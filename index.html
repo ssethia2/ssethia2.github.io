@@ -7,6 +7,7 @@
 		body {
 			background: #c4c9c1;
 			background-size: 1400px 700px;
+			z-index: -1;
 		}
 		.yes{
 			position: sticky;
@@ -26,14 +27,20 @@
 			margin-top: 10px;
 			text-align: center;
 			top: 15px;
+			text-shadow: 1px 1px 1px;
+			-webkit-text-stroke: 1.5px black;
+			font-weight: 1000;
 
 		}
 		.description{
+			z-index:2;
+			position: relative;
 			text-transform: uppercase;
 			line-height: 1.5;
+			
 		}
 		.details{
-			font-variant: small-caps;
+			
 			line-height:1.5;
 		}
 		.two{
@@ -42,6 +49,8 @@
 		}
 		.second{
 			position: relative;
+			/*text-align: center;*/
+			color: white;
 		}
 		.MyButton{
 			position: absolute;
@@ -65,6 +74,7 @@
 			color: #ffffff;
 			background: #000;
 			border: 1;
+			
 		}	
 		.no{
 			height: 650px;
@@ -73,8 +83,19 @@
 			bottom: -10px;
 		}
 		.container{
+			position: absolute;
+			top: 40%;
+			left: 50%;
+			right: 5%;
+			transform: translate(-50%,-50%);
 			color:white;
-			font-family: "Trebuchet MS", Geneva, Helvetica, sans-serif;
+			font-family: Courier;
+			font-variant: small-caps;
+			font-size: 35px;
+			text-align: center;
+			border: 2px black position:relative;
+			border-radius: 5px;
+			text-shadow: 0.5px 0.5px 0.5px;
 		       }
 
 	       </style>
@@ -82,15 +103,16 @@
 	<body>
 		<div id="one">
 			<img class="yes" src="Option2.jpg" align="middle">
-	       		<h3 class="text description">Computer Science + Linguistics,<br>University of Illinois Urbana-Champaign,<br>Class of 2021.</h3>
-			<h3 class="text details">Phone: +1(630)440-4711<br>Email: ssethia2@illinois.edu<br><br></h3>
+			<strong>
+			<h3 class="text description">Computer Science + Linguistics,<br>University of Illinois Urbana-Champaign,<br>Class of 2021.</h3>
+			<h3 class="text details"><br>Phone: +1(630)440-4711<br>Email: ssethia2@illinois.edu<br><br></h3>
 			<div class="second">
 			<img class="no" src="Wallpaper.jpg" width=101.3%>
 			<p class="container">
-				Hello! My name is Satvik Sethia, and I am currently a student<br> at the University of Illinois,
-				Urbana-Champaign.<br>I am a computer enthusiast, linguistic aficionado and math geek.<br>
+				Hello! My name is Satvik Sethia, and I am currently a student at the University of Illinois,
+				Urbana-Champaign.<br><br>I am a computer enthusiast, linguistic aficionado and math geek.<br><br>
 				I write for the sports section of the local newspaper, play the piano, and watch soccer in
-				my free time.
+				my free time.</strong>
 			</p>
 			<input class="MyButton" type="button" value="My Resume" onClick="window.open('Resume.pdf');">
 			</div>
