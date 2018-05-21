@@ -53,8 +53,8 @@
 			color: white;
 		}
 		.resumeButton{
-			position: absolute;
-			bottom: 7px;
+			position: sticky;
+			bottom: 10px;
 		}
 		input.resumeButton {
 			width: 150px;
@@ -62,18 +62,18 @@
 			cursor: pointer;
 			font-weight: bold;
 			font-size: 125%;
-			background: #003366;
-			color: #000;
-			border: 1px solid #003366;
+			background: black;
+			color: white;
+			border: 1px solid black;
 			border-radius: 7px;
 			-moz-box-shadow:: 6px 6px 5px #999;
 			-webkit-box-shadow:: 6px 6px 5px #999;
 			box-shadow:: 6px 6px 6px #999;
 		}
 		input.resumeButton:hover {
-			color: #ffffff;
-			background: #000;
-			border: 1px solid #000;
+			color: white;
+			background: gray;
+			border: 1px solid gray;
 			
 		}	
 		.wallpaper{
@@ -83,7 +83,7 @@
 			margin-top: 97px;
 			margin-left: -10px;
 			padding-left: 0;
-			bottom: -10px;
+			bottom: -58px;
 			position: relative;
 			z-index: -1;
 		}
@@ -108,14 +108,14 @@
 	</head>
 	<body>
 		<div id="top">
-			<img class="title name image" src="Option2.jpg" align="middle">
+			<img class="title name image" src="Title_Image.jpg" align="middle">
 			<strong>
 			<h3 class="text description">Computer Science + Linguistics,<br>University of Illinois Urbana-Champaign,<br>Class of 2021.</h3>
 			</strong>
 			<h3 class="text contact details"><br>Phone: +1(630)440-4711<br>Email: ssethia2@illinois.edu<br><br></h3>
 			<strong>
 			<div class="bottom">
-			<img class="wallpaper" src="Wallpaper.jpg" width=101.3%>
+			<img class="wallpaper" src="Ling_Wallpaper.jpg" width=101.3%>
 			<p class="container">
 				Hello! My name is Satvik Sethia, and I am currently a student at the University of Illinois,
 				Urbana-Champaign.<br><br>I am a computer enthusiast, linguistic aficionado and math geek.<br><br>
@@ -125,5 +125,7 @@
 			<input class="resumeButton" type="button" value="My Resume" onClick="window.open('Satvik_Sethia_Resume.pdf');">
 			</div>
 		</div>
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+		<script src="main.js"></script>
 	</body>
 </html>
