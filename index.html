@@ -9,7 +9,7 @@
 			background-size: 1400px 700px;
 			z-index: -1;
 		}
-		.yes{
+		.title_name{
 
 			position: -webkit-sticky;
 			position: sticky;
@@ -22,7 +22,7 @@
 		.text  {
 			color: white;
 			position: sticky relative;
-		  	font-family: "Trebuchet MS", Geneva, Helvetica, sans-serif;		
+		  	font-family: Helvetica;		
 			left: 0;
 			line-height: 100px;
 			margin: auto;
@@ -54,17 +54,17 @@
 			/*text-align: center;*/
 			color: white;
 		}
-		.MyButton{
+		.resume_button{
 			position: absolute;
-			bottom: 20px;
+			bottom: 10px;
 		}
-		input.MyButton {
+		input.resume_button {
 			width: 170px;
 			padding: 10px;
 			cursor: pointer;
 			font-weight: bold;
 			font-size: 150%;
-			background: #3366cc;
+			background: #000;
 			color: #fff;
 			border: 1px solid #3366cc;
 			border-radius: 10px;
@@ -72,26 +72,26 @@
 			-webkit-box-shadow:: 6px 6px 5px #999;
 			box-shadow:: 6px 6px 6px #999;
 		}
-		input.MyButton:hover {
+		input.resume_button:hover {
 			color: #ffffff;
 			background: #000;
 			border: 1;
 			
 		}	
-		.no{
+		.wallpaper{
 			height: 650px;
 			margin-left: -10px;
 			padding-left: 0;
 			bottom: -10px;
 		}
-		.container{
+		.long_intro{
 			position: absolute;
 			top: 40%;
 			left: 50%;
 			right: 5%;
 			transform: translate(-50%,-50%);
 			color:white;
-			font-family: Courier;
+			font-family: Helvetica;
 			font-variant: small-caps;
 			font-size: 35px;
 			text-align: center;
@@ -104,19 +104,19 @@
 	</head>
 	<body>
 		<div id="one">
-			<img class="yes" src="Option2.jpg" align="middle">
+			<img class="title_name" src="Option2.jpg" align="middle">
 			<strong>
 			<h3 class="text description">Computer Science + Linguistics,<br>University of Illinois Urbana-Champaign,<br>Class of 2021.</h3>
-			<h3 class="text details"><br>Phone: +1(630)440-4711<br>Email: ssethia2@illinois.edu<br><br></h3>
+			<h3 class="contact details"><br>Phone: +1(630)440-4711<br>Email: ssethia2@illinois.edu<br><br></h3>
 			<div class="second">
-			<img class="no" src="Wallpaper.jpg" width=101.3%>
-			<p class="container">
+			<img class="wallpaper" src="Wallpaper.jpg" width=101.3%>
+			<p class="long_intro">
 				Hello! My name is Satvik Sethia, and I am currently a student at the University of Illinois,
 				Urbana-Champaign.<br><br>I am a computer enthusiast, linguistic aficionado and math geek.<br><br>
 				I write for the sports section of the local newspaper, play the piano, and watch soccer in
 				my free time.</strong>
 			</p>
-			<input class="MyButton" type="button" value="My Resume" onClick="window.open('Satvik_Sethia_Resume.pdf');">
+			<input class="resume_button" type="button" value="My Resume" onClick="window.open('Satvik_Sethia_Resume.pdf');">
 			</div>
 		</div>
 
