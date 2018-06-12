@@ -4,19 +4,11 @@ function main() {
     $(".bottom").hide();
     
     $(".title").fadeIn(1000);
-    $(".text").fadeIn(2500);
-    $(".bottom").fadeIn(2750);
-    
-    function hasCollided(a, b) {
-        var aRect = a.getBoundingClientRect();
-        var bRect = b.getBoundingClientRect();
+    $(".text").fadeIn(3500);
+    $(".bottom").fadeIn(3750);
 
-        return !(
-            ((aRect.top + aRect.height) < (bRect.top)) ||
-            (aRect.top > (bRect.top + bRect.height)) ||
-            ((aRect.left + aRect.width) < bRect.left) ||
-            (aRect.left > (bRect.left + bRect.width))
-        );
+    for (var i = 15; i <= document.getElementsByClassName("title name image").length; i += 15) {
+        document.getElementsByClassName("title name image").wi
     }
 
     //$(".projects").hide();

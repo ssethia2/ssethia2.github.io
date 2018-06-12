@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset = "utf-8">
+		<meta charset = "utf-8">	
+		<link rel="icon" href="ss.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin Slab">
 		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 		<script src="main.js"></script>
-	       <title>Satvik Sethia</title>
-	       <style>
+	        <title>Satvik Sethia</title>
+	        <style>
 		body {
 			background: white;
 			background-size: 1500px 700px;
@@ -14,6 +15,7 @@
 		}
 		.title{
  			position: -webkit-sticky;
+			position: -moz-sticky;
  			position: sticky;
 			top: 10px;
 			top: 0.00001px;
@@ -22,12 +24,14 @@
  			display: block;
 			margin: auto;
 			margin-top: 7%;
-			width: 50%;
-			z-index: -2;
 			margin-top: 8%;
-			width: 100%;
 			z-index: 10;
- 		}
+		}
+		#titleImage{
+			width: 50%;
+			-moz-transition: width 2000ms;
+			transition: width 2000ms;			
+		}
  		.text  {
  			position: sticky relative;
  		  	font-family: Josefin Slab,  Helvetica;		
@@ -74,8 +78,8 @@
  			color: white;
  			border: 1px solid black;
  			border-radius: 7px;
- 			-moz-box-shadow:: 6px 6px 5px #999;
- 			-webkit-box-shadow:: 6px 6px 5px #999;
+ 			-moz-box-shadow: 6px 6px 5px #999;
+ 			-webkit-box-shadow: 6px 6px 5px #999;
  			box-shadow:: 6px 6px 6px #999;
  		}
  		input.resumeButton:hover {
@@ -87,7 +91,7 @@
  		.wallpaper{
  			opacity: 0.3;
  			height: 650px;
--			max-width: 100%;
+			max-width: 100%;
  			margin-top: 97px;
  			margin-left: -10px;
  			padding-left: 0;
@@ -101,7 +105,7 @@
  			left: 50%;
  			right: 5%;
  			transform: translate(-50%,-50%);
- 			color:black;
+ 			color: black;
  			font-family: Josefin Slab,  Helvetica;
  			font-variant: small-caps;
  			font-size: 35px;
@@ -110,13 +114,15 @@
  			border: 2px black;
  			border-radius: 5px;
  			text-shadow: 0.5px 0.5px 0.5px;
- 		       }
+ 		}
  
  	       </style>
  	</head>
  	<body>
  		<div id="top">
+			<div id="titleImage">
  			<img class="title name image" src="Title_Image.jpg" align="middle">
+			</div>
  			<strong>
  			<h3 class="text description">Computer Science + Linguistics<br>University of Illinois Urbana-Champaign<br>Class of 2020</h3>
  			</strong>
