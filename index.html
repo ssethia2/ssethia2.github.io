@@ -3,133 +3,98 @@
 	<head>
 		<meta charset = "utf-8">	
 		<link rel="icon" href="ss.ico" type="image/x-icon">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin Slab">
 		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 		<script src="main.js"></script>
-	        <title>Satvik Sethia</title>
-	        <style>
-		body {
-			background: white;
-			background-size: 1500px 700px;
-			z-index: -3;
-		}
-		.title{
- 			position: -webkit-sticky;
-			position: -moz-sticky;
- 			position: sticky;
-			top: 10px;
-			top: 0.00001px;
-			margin-left: -10px;
-			padding-left: 0px;
- 			display: block;
-			margin: auto;
-			margin-top: 7%;
-			margin-top: 8%;
-			z-index: 10;
-		}
- 		.text  {
- 			position: sticky relative;
- 		  	font-family: Josefin Slab,  Helvetica;		
- 			left: 0;
- 			line-height: 10px;
- 			margin: auto;
- 			margin-top: 100px;
- 			text-align: center;
- 			top: 100px;
- 			/*text-shadow: 1px 1px 1px;*/
- 			-webkit-text-stroke: 1.5px black;
- 			font-weight: 1200;
- 			z-index: 1;
- 		}
- 		.description{
- 			margin-top: 45px;
- 			position: relative;
- 			text-transform: uppercase;
- 			line-height: 1.5;
- 			text-shadow: 1px 1px 1px;
- 		}
- 		.details{
- 			line-height:1.5;
- 		}
- 		.two{
- 			
- 		}
- 		.bottom {
- 			position: relative;
- 			/*text-align: center;*/
- 			color: white;
- 		}
- 		.resumeButton{
- 			position: sticky;
- 			bottom: 10px;
- 		}
- 		input.resumeButton {
- 			width: 150px;
- 			padding: 10px;
- 			cursor: pointer;
- 			font-weight: bold;
- 			font-size: 125%;
- 			background: black;
- 			color: white;
- 			border: 1px solid black;
- 			border-radius: 7px;
- 			-moz-box-shadow: 6px 6px 5px #999;
- 			-webkit-box-shadow: 6px 6px 5px #999;
- 			box-shadow:: 6px 6px 6px #999;
- 		}
- 		input.resumeButton:hover {
- 			color: white;
- 			background: gray;
- 			border: 1px solid gray;	
- 		}	
- 		.wallpaper{
- 			opacity: 0.3;
- 			height: 650px;
-			max-width: 100%;
- 			margin-top: 97px;
- 			margin-left: -10px;
- 			padding-left: 0;
- 			bottom: -58px;
- 			position: relative;
- 			z-index: -1;
- 		}
- 		.container{
- 			position: absolute;
- 			top: 60%;
- 			left: 50%;
- 			right: 5%;
- 			transform: translate(-50%,-50%);
- 			color: black;
- 			font-family: Josefin Slab, Helvetica;
- 			font-variant: small-caps;
- 			font-size: 35px;
- 			line-height: 1.3;
- 			text-align: center;
- 			border: 2px black;
- 			border-radius: 5px;
- 			text-shadow: 0.5px 0.5px 0.5px;
- 		}
- 
- 	       </style>
+	   <title>Satvik Sethia</title>
+	   <style>
+			.title_image {
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				box-shadow: 0em 1em 2em rgba(0,0,0,0.1);
+			}
+			.r_bio {
+				margin: 1.5em;
+				font-size: 2em;
+				color: white;
+				padding-bottom: 2em;
+			}
+			.main {
+				margin: 0;
+				padding: 0;
+				position: absolute;
+			}
+			.btn {
+				margin-bottom: 1.5em;
+			}
+			.resume {
+				margin-left: 1.5em;
+			}
+			.title_bg {
+				position: relative;
+				text-align: center;
+				margin-right: 0;
+				margin-left: 0;
+				padding: 0;
+				max-width: 100em;
+			}
+			.centered {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			.text {
+				font-family: Josefin Slab;
+			}
+			.title {
+				font-size: 3em;
+			}
+			.socicon {
+				height: 3em;
+				width: 3em;
+				margin-bottom: 2em;
+			}
+			.navbar {
+				background-color: white;
+				font-size: 1.5em;
+			}
+ 		</style>
  	</head>
  	<body>
- 		<div id="top">
- 			<img class="title name image" src="Title_Image.jpg" width = 100% align="middle">
- 			<strong>
- 			<h3 class="text description">Computer Science + Linguistics<br>University of Illinois Urbana-Champaign<br>Class of 2020</h3>
- 			</strong>
- 			<h3 class="text contact details"><br>Phone: +1(630)440-4711<br>Email: ssethia2@illinois.edu<br><br></h3>
- 			<strong>
- 			<div class="bottom">
-			<img class="wallpaper" src="Ling_Wallpaper.jpg" width = 101.7%>
- 			<p class="container">
- 				Hello! My name is Satvik Sethia, and I am currently a student at the University of Illinois,
- 				Urbana-Champaign.<br><br>I am a computer enthusiast, linguistic aficionado and math geek.<br><br>
- 				I write for the sports section of the local newspaper, play the piano, and watch soccer in
- 				my free time.</strong>
- 			</p>
- 			<input class="resumeButton" type="button" value="My Resume" onClick="window.open('Satvik_Sethia_Resume.pdf');">
- 			</div>
- 		</div>
+		<div class="main container-fluid bg-dark">
+			<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+				<span class="text text-right">Home</span>
+			</nav>
+			<div class="container title_bg">
+				<img class="img-fluid title_image" src="Title_Background1.jpg">
+				<div class="centered text title">Hi, I'm Satvik.</div>
+			</div>
+			<div class="container c_bio">
+				<div class="row r_bio">
+					<span class="align-text-middle text">
+						Hello! My name is Satvik Sethia, and I am currently a student at the University of Illinois,
+						Urbana-Champaign.<br><br>I am a computer enthusiast, linguistic aficionado and math geek.<br><br>
+						I write for the sports section of the local newspaper, play the piano, and watch soccer in
+						my free time.
+					</span>
+				</div>
+			</div>
+			<div class="container resume text">
+				<div class="row">
+					<div class="col-md-4">
+						<a class="btn btn-light" role="button" onClick="window.open('Satvik_Sethia_Resume.pdf');"><strong>My Resume</strong></a>
+					</div>
+					<div class="col-md-5"></div>
+					<div class="col-md-3">
+						<a href="https://github.com/ssethia2">
+							<img class="socicon" src="socicon/github.svg">
+						</a>
+					</div>
+				</div>		
+			</div>
+		</div>
 	</body>
 </html>

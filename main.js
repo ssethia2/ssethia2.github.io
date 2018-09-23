@@ -1,21 +1,24 @@
 function main() {
     $(".title").hide();
     $(".text").hide();
-    $(".bottom").hide();
     
-    $(".title").fadeIn(1000);
-    $(".text").fadeIn(3500);
-    $(".bottom").fadeIn(3750);
+    $(".title").fadeIn(3500);
+    $(".text").fadeIn(4000);
 
-    for (var i = 15; i <= document.getElementsByClassName("title name image").length; i += 15) {
-        document.getElementsByClassName("title name image").wi
-    }
+    myMove();
 
-    //$(".projects").hide();
-    //$(".projects-button").on("click", function () {
-    //    $(this).next().slideToggle(400);
-    //    $(this).toggleClass("active");
-    //    $(this).text("Projects Viewed");
-    //});
+    function myMove() {
+        var elem = document.getElementById("dot-1");   
+        var pos = 0;
+        var id = setInterval(frame, 5);
+        function frame() {
+          if (pos == 350) {
+            clearInterval(id);
+          } else {
+            pos++; 
+            elem.style.top = pos + 'px';
+          }
+        }
+      }
 }
-$(document).ready(main);    
+$(document).ready(main);
