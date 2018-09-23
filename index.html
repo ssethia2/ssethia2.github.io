@@ -31,6 +31,7 @@
 			}
 			.resume {
 				margin-left: 1.5em;
+				margin-right: 1.5em;
 			}
 			.title_bg {
 				position: relative;
@@ -50,23 +51,43 @@
 				font-family: Josefin Slab;
 			}
 			.title {
-				font-size: 3em;
+				font-size: 4em;
+				color: white;
 			}
 			.socicon {
 				height: 3em;
 				width: 3em;
 				margin-bottom: 2em;
+				padding-left: 1em;
+				width: 3.5em;
 			}
 			.navbar {
-				background-color: white;
+				background-color: rgba(0, 0, 0, 0.5);
 				font-size: 1.5em;
+				padding: 0;
+				padding-left: 0.5em;
+			}
+			.navbar-text {
+				padding-left: 0.5em;
+				color: white;	
+			}
+			.nav-sep {
+				padding-left: 0.5em;
+			}
+			.f-soc {
+				padding-left: 0.5em;
+				height: 2.5em;
 			}
  		</style>
  	</head>
  	<body>
 		<div class="main container-fluid bg-dark">
-			<nav class="navbar fixed-top navbar-expand-lg navbar-light">
-				<span class="text text-right">Home</span>
+			<nav class="navbar fixed-top navbar-expand-lg">
+				<span class="text navbar-text" id="nav-home">Home</span>
+				<span class="text navbar-text nav-sep">|</span>
+				<span class="text navbar-text" id="nav-about">About Me</span>
+				<span class="text navbar-text nav-sep">|</span>
+				<span class="text navbar-text" id="nav-link">Links</span>
 			</nav>
 			<div class="container title_bg">
 				<img class="img-fluid title_image" src="Title_Background1.jpg">
@@ -88,9 +109,15 @@
 						<a class="btn btn-light" role="button" onClick="window.open('Satvik_Sethia_Resume.pdf');"><strong>My Resume</strong></a>
 					</div>
 					<div class="col-md-5"></div>
-					<div class="col-md-3">
+					<div class="col-md-3" style="padding: 0">
 						<a href="https://github.com/ssethia2">
-							<img class="socicon" src="socicon/github.svg">
+							<img class="socicon g-soc" src="socicon/github.svg">
+						</a>
+						<a href="https://linkedin.com/in/satviksethia">
+							<img class="socicon l-soc" src="socicon/linkedin.ico">
+						</a>
+						<a href="https://facebook.com/yashsethia123123">
+							<img class="socicon f-soc" src="socicon/facebook.svg">
 						</a>
 					</div>
 				</div>		
