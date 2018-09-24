@@ -2,18 +2,18 @@
 <html>
 	<head>
 		<meta charset = "utf-8">	
-		<link rel="icon" href="ss.ico" type="image/x-icon">
+		<link rel="icon" href="favicon/ss.ico" type="image/x-icon">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin Slab">
 		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-		<script src="main.js"></script>
+		<script src="js/main.js"></script>
 	   <title>Satvik Sethia</title>
 	   <style>
 			.title_image {
 				padding: 0;
 				margin: 0;
 				width: 100%;
-				box-shadow: 0em 1em 2em rgba(0,0,0,0.1);
+				/* box-shadow: 0em 1em 2em rgba(0,0,0,0.1); */
 			}
 			.r_bio {
 				margin: 1.5em;
@@ -25,6 +25,7 @@
 				margin: 0;
 				padding: 0;
 				position: absolute;
+				background-color: #D96653;
 			}
 			.btn {
 				margin-bottom: 1.5em;
@@ -78,10 +79,18 @@
 				padding-left: 0.5em;
 				height: 2.5em;
 			}
+			.dp_image {
+				width: 10em;
+				height: 10em;
+				box-shadow: 0em 1em 2em rgba(0,0,0,0.1);
+			}
+			.dp_row {
+				padding-top: 3.5em;
+			}
  		</style>
  	</head>
  	<body>
-		<div class="main container-fluid bg-dark">
+		<div class="main container-fluid">
 			<nav class="navbar fixed-top navbar-expand-lg">
 				<span class="text navbar-text" id="nav-home">Home</span>
 				<span class="text navbar-text nav-sep">|</span>
@@ -90,10 +99,16 @@
 				<span class="text navbar-text" id="nav-link">Links</span>
 			</nav>
 			<div class="container title_bg">
-				<img class="img-fluid title_image" src="Title_Background1.jpg">
+				<img class="img-fluid title_image" src="images/Title_Background.jpg">
 				<div class="centered text title">Hi, I'm Satvik.</div>
 			</div>
 			<div class="container c_bio">
+				<div class="row dp_row">
+					<div class="col-lg-5"></div>
+					<div class="col-md-3" style="padding-left: 0">
+							<img class="img-fluid dp_image rounded-circle" src="images/DP.jpg">
+					</div>
+				</div>
 				<div class="row r_bio">
 					<span class="align-text-middle text">
 						Hello! My name is Satvik Sethia, and I am currently a student at the University of Illinois,
@@ -106,7 +121,7 @@
 			<div class="container resume text">
 				<div class="row">
 					<div class="col-md-4">
-						<a class="btn btn-light" role="button" onClick="window.open('Satvik_Sethia_Resume.pdf');"><strong>My Resume</strong></a>
+						<a class="btn btn-light" role="button" onClick="window.open('files/Satvik_Sethia_Resume.pdf');"><strong>My Resume</strong></a>
 					</div>
 					<div class="col-md-5"></div>
 					<div class="col-md-3" style="padding: 0">
