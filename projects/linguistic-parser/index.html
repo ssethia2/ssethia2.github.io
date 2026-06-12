@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linguistic Syntax Parser & IPA Soundboard</title>
+  <link rel="icon" href="../../favicon/ss.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (systemDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body class="subproject-body">
+  
+  <!-- Mini Navigation back to portfolio -->
+  <a href="../../" class="back-link glass">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    Back to Portfolio
+  </a>
+
+  <main class="container">
+    <header class="project-header text-center">
+      <h1 class="project-title">Linguistic Parser & IPA Soundboard</h1>
+      <p class="project-subtitle">An interactive natural language processing sandbox visualizing syntax structures and synthesized phonetics.</p>
+    </header>
+
+    <!-- Tab navigation -->
+    <div class="tab-controls glass">
+      <button class="tab-btn active" data-tab="syntax">Syntax Tree Parser</button>
+      <button class="tab-btn" data-tab="ipa">IPA Phonics Soundboard</button>
+    </div>
+
+    <!-- TAB 1: Syntax Tree Parser -->
+    <section id="syntax-tab" class="tab-pane active glass">
+      <div class="panel-layout">
+        <div class="panel-sidebar">
+          <h3>Natural Language Syntax Parser</h3>
+          <p class="description">Enter a sentence below to dynamically parse its structural grammar components (Subject, Predicate, Modifiers) and render a hierarchical branching Syntax Tree.</p>
+          
+          <div class="form-group">
+            <label for="sentence-input">Enter Sentence:</label>
+            <input type="text" id="sentence-input" value="The senior developer built beautiful applications" placeholder="Type a sentence...">
+          </div>
+
+          <div class="preset-sentences">
+            <span>Try these presets:</span>
+            <button class="preset-btn">HubSpot scales customer connections</button>
+            <button class="preset-btn">Linguistics explores structural human language</button>
+            <button class="preset-btn">Mathematics proves beautiful elegant theorems</button>
+          </div>
+
+          <div class="grammar-legend">
+            <h4>Grammar Legend:</h4>
+            <ul>
+              <li><span class="legend-badge s-badge">S</span> Sentence (Root)</li>
+              <li><span class="legend-badge np-badge">NP</span> Noun Phrase</li>
+              <li><span class="legend-badge vp-badge">VP</span> Verb Phrase</li>
+              <li><span class="legend-badge det-badge">Det</span> Determiner (e.g. the, a)</li>
+              <li><span class="legend-badge adj-badge">Adj</span> Adjective (e.g. beautiful)</li>
+              <li><span class="legend-badge n-badge">N</span> Noun (e.g. developer)</li>
+              <li><span class="legend-badge v-badge">V</span> Verb (e.g. built, scales)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel-content">
+          <div class="tree-canvas-wrapper glass">
+            <canvas id="tree-canvas"></canvas>
+            <div id="tree-overlay-error" class="error-overlay hidden">Could not parse tree. Try checking your syntax structure!</div>
+          </div>
+          <div class="tree-controls">
+            <button class="btn btn-secondary" id="reset-tree-zoom">Reset View</button>
+            <span class="helper-text">Tip: Drag inside the canvas to pan. Use scrollwheel to zoom!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: IPA Phonics Soundboard -->
+    <section id="ipa-tab" class="tab-pane glass">
+      <div class="panel-layout">
+        <div class="panel-sidebar">
+          <h3>IPA Phonics Synth</h3>
+          <p class="description">Click on any phonetic segment to synthesize its corresponding speech frequencies directly in the browser using custom dynamic sound envelopes via the Web Audio API.</p>
+          
+          <div class="waveform-box glass">
+            <canvas id="wave-canvas"></canvas>
+            <span class="waveform-label">Oscilloscope Spectrogram</span>
+          </div>
+
+          <div class="synth-settings">
+            <h4>Voice Parameters:</h4>
+            <div class="slider-group">
+              <label for="synth-pitch">Pitch (Frequency): <span id="pitch-val">120Hz</span></label>
+              <input type="range" id="synth-pitch" min="60" max="250" value="120">
+            </div>
+            <div class="slider-group">
+              <label for="synth-vowel-gain">Vowel Resonance: <span id="gain-val">80%</span></label>
+              <input type="range" id="synth-vowel-gain" min="0" max="100" value="80">
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-content">
+          <h4 class="soundboard-section-title">Vowels (Resonant Formants)</h4>
+          <div class="ipa-grid vowels-grid">
+            <!-- Vowels dynamically inserted -->
+          </div>
+
+          <h4 class="soundboard-section-title">Consonants (Friction & Plosion)</h4>
+          <div class="ipa-grid consonants-grid">
+            <!-- Consonants dynamically inserted -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+/* ==========================================
+   MATRIX & FRACTALS SPECIFIC STYLING
+   ========================================== */
+
+/* Bracket styling to look like a mathematical matrix [a b; c d] */
+.matrix-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.matrix-input-container h4 {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+}
+
+.matrix-bracket {
+  position: relative;
+  padding: 8px 16px;
+  border-left: 3px solid var(--text-primary);
+  border-right: 3px solid var(--text-primary);
+  border-radius: 8px;
+  max-width: 250px;
+}
+
+.matrix-bracket::before, .matrix-bracket::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 10px;
+  height: 3px;
+  background-color: var(--text-primary);
+}
+
+.matrix-bracket::before { top: 0; }
+.matrix-bracket::after { bottom: 0; }
+
+.matrix-bracket::after {
+  left: auto;
+  right: 0;
+}
+.matrix-bracket::before {
+  left: auto;
+  right: 0;
+  top: 0;
+}
+
+/* Second set of matching corners */
+.matrix-bracket::before {
+  box-shadow: -224px 0 var(--text-primary);
+}
+.matrix-bracket::after {
+  box-shadow: -224px 0 var(--text-primary);
+}
+
+.matrix-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.matrix-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.matrix-cell label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.matrix-cell input {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  -moz-appearance: textfield;
+}
+
+.matrix-cell input::-webkit-outer-spin-button,
+.matrix-cell input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.matrix-cell input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-neon-primary);
+}
+
+.matrix-math-box {
+  padding: 20px;
+}
+
+.matrix-math-box h4 {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.math-result {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+/* Custom Select Dropdowns */
+.custom-select {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 12px 16px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234facfe' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.custom-select:focus {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-neon-primary);
+}
+
+.julia-controls {
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+
+.julia-controls h4 {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.julia-controls.hidden {
+  display: none;
+}
+
+/* Spinner Overlay for Fractal generation */
+.spinner-overlay {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(11, 15, 25, 0.85);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-full);
+  padding: 10px 20px;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--glass-shadow);
+  z-index: 10;
+  opacity: 1;
+  transition: opacity var(--transition-fast) ease;
+}
+
+.spinner-overlay::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent-primary);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
