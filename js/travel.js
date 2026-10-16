@@ -1,6 +1,6 @@
 // Travel map: cities and places I've been, plus states in the US and India.
 //
-// PLACES are pinned on the map and listed under it, grouped by country. Coordinates are
+// PLACES are pinned on the map; hovering (or tapping) shows their names. Coordinates are
 // [longitude, latitude]. A country with a pin in it is shaded automatically, as long as
 // `country` matches a name in data/countries-110m.json (countries too small for that data,
 // like Singapore, still get a pin).
@@ -48,15 +48,12 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 const WIDTH = 960;
 const HEIGHT = 470;
 
-function svgEl(name, attrs, title) {
+const displayName = country => DISPLAY_NAMES[country] || country;
+
+function svgEl(name, attrs) {
 	const el = document.createElementNS(SVG_NS, name);
 	for (const [key, value] of Object.entries(attrs)) {
 		el.setAttribute(key, value);
-	}
-	if (title) {
-		const t = document.createElementNS(SVG_NS, 'title');
-		t.textContent = title;
-		el.appendChild(t);
 	}
 	return el;
 }
@@ -67,93 +64,106 @@ function warnUnknown(names, known, kind) {
 	}
 }
 
+// Small popup that follows the mouse, or opens where you tap on touch screens
+function createTip(container, tips) {
+	const tip = document.createElement('div');
+	tip.className = 'map-tip';
+	tip.hidden = true;
+	const title = document.createElement('strong');
+	const detail = document.createElement('span');
+	tip.append(title, detail);
+	container.appendChild(tip);
+
+	const move = e => {
+		const rect = container.getBoundingClientRect();
+		const half = tip.offsetWidth / 2;
+		const x = Math.min(Math.max(e.clientX - rect.left, half), rect.width - half);
+		tip.style.left = `${x}px`;
+		tip.style.top = `${e.clientY - rect.top}px`;
+	};
+	const hide = () => { tip.hidden = true; };
+
+	container.addEventListener('pointerover', e => {
+		const data = tips.get(e.target.closest('[data-tip]'));
+		if (!data) return hide();
+		title.textContent = data.title;
+		detail.textContent = data.detail || '';
+		detail.hidden = !data.detail;
+		tip.hidden = false;
+		move(e);
+	});
+	container.addEventListener('pointermove', e => {
+		if (!tip.hidden && e.pointerType === 'mouse') move(e);
+	});
+	container.addEventListener('pointerleave', e => {
+		if (e.pointerType === 'mouse') hide();
+	});
+	document.addEventListener('pointerdown', e => {
+		if (!container.contains(e.target)) hide();
+	});
+}
+
 function renderMap(container, countries, states) {
 	const projection = d3.geoNaturalEarth1()
 		.fitSize([WIDTH, HEIGHT], { type: 'FeatureCollection', features: countries });
 	const path = d3.geoPath(projection);
+	const tips = new WeakMap();
 
+	const placesIn = country => PLACES.filter(p => p.country === country).map(p => p.name);
 	const shadedCountries = new Set([...COUNTRIES, ...PLACES.map(p => p.country)]);
-	const shadedStates = new Set(STATES);
 
 	const svg = svgEl('svg', {
 		viewBox: `0 0 ${WIDTH} ${HEIGHT}`,
 		role: 'img',
-		'aria-label': "World map of places I've been"
+		'aria-label': `World map of places I've been: ${PLACES.map(p => p.name).join(', ')}`
 	});
+
+	const addRegion = (feature, visited, tip) => {
+		const region = svgEl('path', { d: path(feature), class: visited ? 'region visited' : 'region' });
+		if (visited) {
+			region.setAttribute('data-tip', '');
+			tips.set(region, tip);
+		}
+		svg.appendChild(region);
+	};
 
 	for (const f of countries) {
 		const name = f.properties.name;
 		if (STATE_LEVEL.has(name)) continue;
-		svg.appendChild(svgEl('path', {
-			d: path(f),
-			class: shadedCountries.has(name) ? 'region visited' : 'region'
-		}, DISPLAY_NAMES[name] || name));
+		addRegion(f, shadedCountries.has(name), {
+			title: displayName(name),
+			detail: placesIn(name).filter(place => place !== name).join(' · ')
+		});
 	}
 
 	for (const f of states) {
 		const { name, admin } = f.properties;
-		const visited = shadedStates.has(name) || COUNTRIES.includes(admin);
-		svg.appendChild(svgEl('path', {
-			d: path(f),
-			class: visited ? 'region visited' : 'region'
-		}, name));
+		addRegion(f, STATES.includes(name) || COUNTRIES.includes(admin), {
+			title: name,
+			detail: displayName(admin)
+		});
 	}
 
-	// Home pin last, so it sits on top
-	const pins = PLACES.map(place => {
+	// Each pin gets a larger invisible hit area; the home pin is drawn last, on top
+	const ordered = [...PLACES.filter(p => !p.home), ...PLACES.filter(p => p.home)];
+	for (const place of ordered) {
 		const [x, y] = projection(place.coords);
-		return svgEl('circle', {
-			cx: x, cy: y, r: place.home ? 5 : 3.5,
-			class: place.home ? 'pin pin-home' : 'pin'
-		}, place.home ? `${place.name} (home)` : place.name);
-	});
-	pins.filter((_, i) => !PLACES[i].home).forEach(pin => svg.appendChild(pin));
-	pins.filter((_, i) => PLACES[i].home).forEach(pin => svg.appendChild(pin));
+		const group = svgEl('g', { class: 'pin-group', 'data-tip': '' });
+		group.append(
+			svgEl('circle', { cx: x, cy: y, r: 9, class: 'pin-hit' }),
+			svgEl('circle', { cx: x, cy: y, r: place.home ? 5 : 3.5, class: place.home ? 'pin pin-home' : 'pin' })
+		);
+		tips.set(group, { title: place.name, detail: place.home ? 'Home' : displayName(place.country) });
+		svg.appendChild(group);
+	}
 
 	container.appendChild(svg);
-	return pins;
-}
-
-function renderList(list, pins) {
-	const groups = new Map(COUNTRIES.map(c => [c, []]));
-	PLACES.forEach((place, i) => {
-		if (!groups.has(place.country)) groups.set(place.country, []);
-		groups.get(place.country).push(i);
-	});
-
-	for (const [country, indices] of groups) {
-		const item = document.createElement('li');
-		const name = document.createElement('span');
-		name.className = 'travel-country';
-		name.textContent = DISPLAY_NAMES[country] || country;
-		item.appendChild(name);
-
-		const highlight = (el, i) => {
-			el.addEventListener('mouseenter', () => pins[i].classList.add('active'));
-			el.addEventListener('mouseleave', () => pins[i].classList.remove('active'));
-		};
-
-		// A city-state like Singapore is listed once, not as "Singapore Singapore"
-		if (indices.length === 1 && PLACES[indices[0]].name === name.textContent) {
-			highlight(name, indices[0]);
-		} else {
-			indices.forEach((i, n) => {
-				if (n > 0) item.append(' · ');
-				const place = document.createElement('span');
-				place.className = 'travel-place';
-				place.textContent = PLACES[i].name;
-				highlight(place, i);
-				item.appendChild(place);
-			});
-		}
-		list.appendChild(item);
-	}
+	createTip(container, tips);
 }
 
 async function renderTravel() {
 	const container = document.getElementById('travel-map');
-	const list = document.getElementById('travel-list');
-	if (!container || !list) return;
+	if (!container) return;
 
 	const [world, stateData] = await Promise.all([
 		fetch('data/countries-110m.json').then(r => r.json()),
@@ -168,8 +178,7 @@ async function renderTravel() {
 	warnUnknown(PLACES.map(p => p.country).filter(c => c !== 'Singapore'), countryNames, 'country');
 	warnUnknown(STATES, new Set(states.map(f => f.properties.name)), 'state');
 
-	const pins = renderMap(container, countries, states);
-	renderList(list, pins);
+	renderMap(container, countries, states);
 }
 
 renderTravel();
