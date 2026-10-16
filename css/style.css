@@ -126,6 +126,48 @@ a.navbar-text:hover {
 	text-align: center;
 }
 
+/* Travel map */
+
+.travel {
+	padding-bottom: 3em;
+}
+
+.travel-map svg {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.country {
+	fill: rgba(255, 255, 255, 0.1);
+	stroke: #15121b;
+	stroke-width: 0.5;
+}
+
+.country:hover {
+	fill: rgba(255, 255, 255, 0.2);
+}
+
+.country.visited {
+	fill: #f4a18f;
+}
+
+.country.visited:hover {
+	fill: #f8bfb1;
+}
+
+.pin {
+	fill: white;
+	stroke: #15121b;
+	stroke-width: 1.5;
+}
+
+.pin-home {
+	fill: white;
+	stroke: #f4a18f;
+	stroke-width: 2.5;
+}
+
 /* Projects */
 
 .projects {
