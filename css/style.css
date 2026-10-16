@@ -138,34 +138,69 @@ a.navbar-text:hover {
 	height: auto;
 }
 
-.country {
+.region {
 	fill: rgba(255, 255, 255, 0.1);
 	stroke: #15121b;
 	stroke-width: 0.5;
 }
 
-.country:hover {
+.region:hover {
 	fill: rgba(255, 255, 255, 0.2);
 }
 
-.country.visited {
-	fill: #f4a18f;
+.region.visited {
+	fill: rgba(244, 161, 143, 0.45);
 }
 
-.country.visited:hover {
-	fill: #f8bfb1;
+.region.visited:hover {
+	fill: rgba(244, 161, 143, 0.65);
 }
 
 .pin {
 	fill: white;
 	stroke: #15121b;
-	stroke-width: 1.5;
+	stroke-width: 1.2;
+}
+
+.pin.active {
+	fill: #f4a18f;
+	stroke: white;
+	transform: scale(1.8);
+	transform-box: fill-box;
+	transform-origin: center;
 }
 
 .pin-home {
-	fill: white;
 	stroke: #f4a18f;
 	stroke-width: 2.5;
+}
+
+.travel-list {
+	max-width: 52em;
+	margin: 1.5em auto 0;
+	padding: 0;
+	list-style: none;
+	font-size: 1.3em;
+	columns: 3 14em;
+	column-gap: 2em;
+}
+
+.travel-list li {
+	margin-bottom: 0.4em;
+	break-inside: avoid;
+}
+
+.travel-country {
+	margin-right: 0.5em;
+	color: #f4a18f;
+}
+
+.travel-place {
+	cursor: default;
+}
+
+.travel-place:hover {
+	text-decoration: underline;
 }
 
 /* Projects */
