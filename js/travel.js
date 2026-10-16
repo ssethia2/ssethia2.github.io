@@ -1,15 +1,32 @@
 // Travel map: cities and places I've been, plus states in the US and India.
 //
 // PLACES are pinned on the map; hovering (or tapping) shows their names. Coordinates are
-// [longitude, latitude]. A country with a pin in it is shaded automatically, as long as
-// `country` matches a name in data/countries-110m.json (countries too small for that data,
-// like Singapore, still get a pin).
+// [longitude, latitude]. `region` is shown in the popup, and for the US and India it should
+// be the state's name as it appears in data/states.json, so that state gets shaded too.
+// `note` replaces the location in the popup, and `home` gives the pin a ring.
 //
-// The US and India are drawn state by state instead: list states in STATES, using the
-// names in data/states.json. COUNTRIES shades a whole country with no pins in it.
+// A country with a pin in it is shaded automatically, as long as `country` matches a name in
+// data/countries-110m.json (countries too small for that data, like Singapore, still get a pin).
+// The US and India are drawn state by state instead: STATES lists states visited without a
+// pin in them. COUNTRIES shades a whole country with no pins in it.
 
 const PLACES = [
-	{ name: 'New York City', country: 'United States of America', coords: [-74.006, 40.713], home: true },
+	{ name: 'New York City', country: 'United States of America', region: 'New York', coords: [-74.006, 40.713], home: true, note: 'Home' },
+
+	{ name: 'Kolkata', country: 'India', region: 'West Bengal', coords: [88.364, 22.573], home: true, note: 'Where I grew up' },
+	{ name: 'Dooars', country: 'India', region: 'West Bengal', coords: [88.950, 26.750] },
+	{ name: 'Delhi', country: 'India', region: 'Delhi', coords: [77.209, 28.614] },
+	{ name: 'Agra', country: 'India', region: 'Uttar Pradesh', coords: [78.008, 27.177] },
+	{ name: 'Chandigarh', country: 'India', region: 'Chandigarh', coords: [76.779, 30.733] },
+	{ name: 'Shimla', country: 'India', region: 'Himachal Pradesh', coords: [77.173, 31.105] },
+	{ name: 'Manali', country: 'India', region: 'Himachal Pradesh', coords: [77.189, 32.243] },
+	{ name: 'Puri', country: 'India', region: 'Odisha', coords: [85.831, 19.814] },
+	{ name: 'Surat', country: 'India', region: 'Gujarat', coords: [72.831, 21.170] },
+	{ name: 'Hyderabad', country: 'India', region: 'Telangana', coords: [78.487, 17.385] },
+	{ name: 'Bangalore', country: 'India', region: 'Karnataka', coords: [77.595, 12.972] },
+	{ name: 'Coorg', country: 'India', region: 'Karnataka', coords: [75.738, 12.424] },
+	{ name: 'Chennai', country: 'India', region: 'Tamil Nadu', coords: [80.271, 13.083] },
+
 	{ name: 'Tokyo', country: 'Japan', coords: [139.692, 35.690] },
 	{ name: 'Osaka', country: 'Japan', coords: [135.502, 34.694] },
 	{ name: 'Kyoto', country: 'Japan', coords: [135.768, 35.012] },
@@ -17,7 +34,11 @@ const PLACES = [
 	{ name: 'Bangkok', country: 'Thailand', coords: [100.502, 13.756] },
 	{ name: 'Dubai', country: 'United Arab Emirates', coords: [55.271, 25.205] },
 	{ name: 'Doha', country: 'Qatar', coords: [51.531, 25.285] },
-	{ name: 'London', country: 'United Kingdom', coords: [-0.128, 51.507] },
+
+	{ name: 'London', country: 'United Kingdom', region: 'England', coords: [-0.128, 51.507] },
+	{ name: 'Edinburgh', country: 'United Kingdom', region: 'Scotland', coords: [-3.188, 55.953] },
+	{ name: 'Stirling', country: 'United Kingdom', region: 'Scotland', coords: [-3.937, 56.117] },
+	{ name: 'Inverness', country: 'United Kingdom', region: 'Scotland', coords: [-4.225, 57.478] },
 	{ name: 'Barcelona', country: 'Spain', coords: [2.169, 41.387] },
 	{ name: 'Sevilla', country: 'Spain', coords: [-5.985, 37.389] },
 	{ name: 'Berlin', country: 'Germany', coords: [13.405, 52.520] },
@@ -28,18 +49,23 @@ const PLACES = [
 	{ name: 'Prague', country: 'Czechia', coords: [14.438, 50.076] },
 	{ name: 'Český Krumlov', country: 'Czechia', coords: [14.318, 48.813] },
 	{ name: 'Bratislava', country: 'Slovakia', coords: [17.108, 48.149] },
+
 	{ name: 'Cancún', country: 'Mexico', coords: [-86.852, 21.162] },
 ];
 
 const STATES = [
-	'New York',
-	'Illinois',
+	// US (Iowa, Pennsylvania, and Ohio driven across)
+	'Alabama', 'Arizona', 'California', 'Colorado', 'Connecticut', 'District of Columbia',
+	'Florida', 'Georgia', 'Illinois', 'Indiana', 'Iowa', 'Maine', 'Massachusetts', 'Michigan',
+	'Missouri', 'Montana', 'New Hampshire', 'New Jersey', 'New York', 'North Carolina',
+	'North Dakota', 'Ohio', 'Pennsylvania', 'Rhode Island', 'South Dakota', 'Tennessee',
+	'Vermont', 'Washington', 'Wisconsin', 'Wyoming',
+
+	// India
+	'Goa', 'Jammu and Kashmir', 'Ladakh', 'Rajasthan', 'Sikkim', 'Uttarakhand',
 ];
 
-// Remove India from here once its states are listed above
-const COUNTRIES = [
-	'India',
-];
+const COUNTRIES = [];
 
 const STATE_LEVEL = new Set(['United States of America', 'India']);
 const DISPLAY_NAMES = { 'United States of America': 'United States' };
@@ -136,11 +162,20 @@ function renderMap(container, countries, states) {
 		});
 	}
 
+	const placesInState = state => PLACES
+		.filter(p => STATE_LEVEL.has(p.country) && p.region === state && p.name !== state)
+		.map(p => p.name);
+	const shadedStates = new Set([
+		...STATES,
+		...PLACES.filter(p => STATE_LEVEL.has(p.country)).map(p => p.region),
+	]);
+
 	for (const f of states) {
 		const { name, admin } = f.properties;
-		addRegion(f, STATES.includes(name) || COUNTRIES.includes(admin), {
+		const places = placesInState(name);
+		addRegion(f, shadedStates.has(name) || COUNTRIES.includes(admin), {
 			title: name,
-			detail: displayName(admin)
+			detail: places.length ? places.join(' · ') : displayName(admin)
 		});
 	}
 
@@ -153,7 +188,10 @@ function renderMap(container, countries, states) {
 			svgEl('circle', { cx: x, cy: y, r: 9, class: 'pin-hit' }),
 			svgEl('circle', { cx: x, cy: y, r: place.home ? 5 : 3.5, class: place.home ? 'pin pin-home' : 'pin' })
 		);
-		tips.set(group, { title: place.name, detail: place.home ? 'Home' : displayName(place.country) });
+		const location = place.region && place.region !== place.name
+			? `${place.region}, ${displayName(place.country)}`
+			: displayName(place.country);
+		tips.set(group, { title: place.name, detail: place.note || location });
 		svg.appendChild(group);
 	}
 
@@ -176,7 +214,9 @@ async function renderTravel() {
 	const countryNames = new Set(countries.map(f => f.properties.name));
 	warnUnknown(COUNTRIES, countryNames, 'country');
 	warnUnknown(PLACES.map(p => p.country).filter(c => c !== 'Singapore'), countryNames, 'country');
-	warnUnknown(STATES, new Set(states.map(f => f.properties.name)), 'state');
+	const stateNames = new Set(states.map(f => f.properties.name));
+	warnUnknown(STATES, stateNames, 'state');
+	warnUnknown(PLACES.filter(p => STATE_LEVEL.has(p.country)).map(p => p.region), stateNames, 'state');
 
 	renderMap(container, countries, states);
 }
