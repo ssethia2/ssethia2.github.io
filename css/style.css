@@ -1,16 +1,13 @@
-/* Shared styles: coral background, Josefin Slab, translucent fixed navbar. */
+/* Shared styles: dark night-sky background continuing from the title image,
+   Josefin Slab, translucent fixed navbar. */
 
 *, *::before, *::after {
 	box-sizing: border-box;
 }
 
-html {
-	scroll-behavior: smooth;
-}
-
 body {
 	margin: 0;
-	background-color: #DA5B4C;
+	background: #110f17 linear-gradient(#1d181a, #110f17) no-repeat;
 	color: white;
 	font-family: "Josefin Slab", Georgia, serif;
 	font-size: 16px;
@@ -36,9 +33,6 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	html {
-		scroll-behavior: auto;
-	}
 	.text {
 		animation: none;
 	}
@@ -77,20 +71,22 @@ a.navbar-text:hover {
 	opacity: 0.8;
 }
 
-/* Title image */
+/* Title image: fills the first screen */
 
 .title_bg {
 	position: relative;
-	max-width: 100em;
-	margin: 0 auto;
+	height: 100vh;
+	height: 100svh;
+	min-height: 20em;
 	text-align: center;
 }
 
 .title_image {
 	display: block;
 	width: 100%;
-	min-height: 16em;
+	height: 100%;
 	object-fit: cover;
+	object-position: 55% 50%;
 }
 
 .centered {
@@ -120,7 +116,7 @@ a.navbar-text:hover {
 	height: 10em;
 	border-radius: 50%;
 	object-fit: cover;
-	box-shadow: 0 1em 2em rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
 }
 
 .r_bio {
@@ -148,9 +144,9 @@ a.navbar-text:hover {
 	max-width: 52em;
 	margin: 0 auto 1.5em;
 	padding: 1.5em 2em;
+	border: 1px solid rgba(255, 255, 255, 0.1);
 	border-radius: 0.3rem;
-	background-color: rgba(0, 0, 0, 0.12);
-	box-shadow: 0 1em 2em rgba(0, 0, 0, 0.1);
+	background-color: rgba(255, 255, 255, 0.04);
 	text-align: center;
 }
 
@@ -158,6 +154,7 @@ a.navbar-text:hover {
 	margin: 0 0 0.25em;
 	font-size: 2em;
 	font-weight: normal;
+	color: #f4a18f;
 }
 
 .project-title a {
@@ -233,12 +230,11 @@ a.navbar-text:hover {
 	width: 2.5em;
 	margin-bottom: 2em;
 	padding-left: 1em;
+	filter: brightness(0) invert(1);
 }
 
-.f-soc {
-	padding-left: 0;
-	height: 1.5em;
-	margin-top: 0.25em;
+.socials a:hover .socicon {
+	opacity: 0.8;
 }
 
 /* Small screens */

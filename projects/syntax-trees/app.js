@@ -87,7 +87,7 @@ function drawNode(svg, node) {
   }
 
   const isHead = children(node).length === 0;
-  const labelClass = node.label.endsWith('P') || node.label === 'S' ? 'tree-label-phrase'
+  const labelClass = (node.label.endsWith('P') && node.label !== 'P') || node.label === 'S' ? 'tree-label-phrase'
     : node.label.endsWith("'") ? 'tree-label-bar'
     : 'tree-label-head';
 

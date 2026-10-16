@@ -103,12 +103,13 @@
 .token-chip {
 	padding: 0.2em 0.7em;
 	border-radius: 0.3rem;
-	background-color: rgba(0, 0, 0, 0.12);
+	background-color: rgba(255, 255, 255, 0.08);
 	font-size: 1.1em;
 }
 
 .token-tag {
 	font-weight: 600;
+	color: #f4a18f;
 }
 
 /* Tree drawing */
@@ -116,9 +117,9 @@
 .tree-output {
 	margin-bottom: 1.5em;
 	padding: 1em;
+	border: 1px solid rgba(255, 255, 255, 0.1);
 	border-radius: 0.3rem;
-	background-color: #f8f9fa;
-	box-shadow: 0 1em 2em rgba(0, 0, 0, 0.1);
+	background-color: rgba(255, 255, 255, 0.04);
 	overflow-x: auto;
 }
 
@@ -132,13 +133,13 @@
 .tree-message {
 	width: 100%;
 	padding: 2em;
-	color: #6c757d;
+	color: rgba(255, 255, 255, 0.6);
 	font-size: 1.25em;
 	text-align: center;
 }
 
 .tree-edge {
-	stroke: #adb5bd;
+	stroke: rgba(255, 255, 255, 0.35);
 	stroke-width: 1.2;
 }
 
@@ -149,16 +150,16 @@
 .tree-label {
 	font-family: "Josefin Slab", Georgia, serif;
 	font-size: 17px;
-	fill: #212529;
+	fill: white;
 }
 
 .tree-label-phrase {
 	font-weight: 600;
-	fill: #B23A2C;
+	fill: #f4a18f;
 }
 
 .tree-label-bar {
-	fill: #6c757d;
+	fill: rgba(255, 255, 255, 0.6);
 }
 
 .tree-label-head {
@@ -167,5 +168,5 @@
 
 .tree-word {
 	font-style: italic;
-	fill: #1f5f8b;
+	fill: #b8acd9;
 }
