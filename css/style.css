@@ -112,8 +112,8 @@ a.navbar-text:hover {
 }
 
 .dp_image {
-	width: 10em;
-	height: 10em;
+	width: 14em;
+	height: 14em;
 	border-radius: 50%;
 	object-fit: cover;
 	box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
