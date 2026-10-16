@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>X-Bar Syntax Tree Generator | Satvik Sethia</title>
+		<meta name="description" content="Builds X-bar theory syntax trees from full English sentences, with in-browser part-of-speech tagging. Originally a C++ desktop application.">
+		<link rel="canonical" href="https://ssethia2.github.io/projects/syntax-trees/">
+		<link rel="icon" href="../../favicon/ss.ico" type="image/x-icon">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@400;600&display=swap">
+		<link rel="stylesheet" href="../../css/style.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<nav class="navbar">
+			<a class="navbar-text" href="../../">Home</a>
+			<span class="navbar-text">|</span>
+			<a class="navbar-text" href="../../#projects">Projects</a>
+		</nav>
+
+		<main class="container tree-page">
+			<h1 class="section-title">Syntax Tree Generator</h1>
+			<p class="tree-intro">
+				Type an English sentence and it gets part-of-speech tagged in your browser, then parsed
+				into an <a href="https://en.wikipedia.org/wiki/X-bar_theory" target="_blank" rel="noopener">X-bar theory</a>
+				syntax tree. I originally built this in C++ as a desktop app that only accepted raw POS tags
+				(<a href="https://github.com/ssethia2/SyntaxTrees" target="_blank" rel="noopener">source on GitHub</a>).
+			</p>
+
+			<div class="tree-controls">
+				<div class="mode-toggle">
+					<button class="mode-btn active" data-mode="sentence">English Sentence</button>
+					<button class="mode-btn" data-mode="tags">Raw POS Tags</button>
+				</div>
+				<div class="tree-input-row">
+					<input type="text" id="sentence-input" class="tree-input"
+						placeholder="e.g. The quick brown fox jumps over the lazy dog" autocomplete="off"
+						aria-label="Sentence">
+					<button id="draw-btn" class="btn">Draw Tree</button>
+				</div>
+				<div class="tree-examples">
+					<span>Try:</span>
+					<button class="example-btn" data-mode="sentence" data-text="The quick brown fox jumps over the lazy dog">the quick brown fox…</button>
+					<button class="example-btn" data-mode="sentence" data-text="She quickly reads the new book">she quickly reads…</button>
+					<button class="example-btn" data-mode="sentence" data-text="The dog in the park barks">the dog in the park…</button>
+					<button class="example-btn" data-mode="tags" data-text="D Adj N V P D N">D Adj N V P D N</button>
+				</div>
+			</div>
+
+			<div id="token-chips" class="token-chips"></div>
+
+			<div class="tree-output">
+				<div id="tree-container" class="tree-container"></div>
+			</div>
+
+			<div class="tree-legend">
+				<span class="token-chip">D <span class="token-tag">Determiner</span></span>
+				<span class="token-chip">N <span class="token-tag">Noun</span></span>
+				<span class="token-chip">V <span class="token-tag">Verb</span></span>
+				<span class="token-chip">Adj <span class="token-tag">Adjective</span></span>
+				<span class="token-chip">Adv <span class="token-tag">Adverb</span></span>
+				<span class="token-chip">P <span class="token-tag">Preposition</span></span>
+				<span class="token-chip">∅ <span class="token-tag">Null determiner</span></span>
+			</div>
+		</main>
+
+		<script src="app.js" type="module"></script>
+	</body>
+</html>

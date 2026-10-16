@@ -1,0 +1,171 @@
+/* Page-specific styles for the Syntax Tree Generator.
+   Builds on ../../css/style.css */
+
+.tree-page {
+	padding-top: 6em;
+	padding-bottom: 4em;
+}
+
+.tree-intro {
+	max-width: 40em;
+	margin: 0 auto 2em;
+	font-size: 1.4em;
+	text-align: center;
+}
+
+/* Input controls */
+
+.tree-controls {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	margin-bottom: 1.5em;
+}
+
+.mode-toggle {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+}
+
+.mode-btn,
+.example-btn {
+	padding: 0.35em 0.9em;
+	border: 1px solid white;
+	border-radius: 0.3rem;
+	background-color: transparent;
+	color: white;
+	font-family: inherit;
+	font-size: 1.1em;
+	cursor: pointer;
+}
+
+.mode-btn:hover,
+.example-btn:hover {
+	background-color: rgba(255, 255, 255, 0.15);
+}
+
+.mode-btn.active {
+	background-color: #f8f9fa;
+	color: #212529;
+}
+
+.tree-input-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75em;
+}
+
+.tree-input {
+	flex: 1;
+	min-width: 0;
+	flex-basis: 15em;
+	padding: 0.5rem 1rem;
+	border: 1px solid #f8f9fa;
+	border-radius: 0.3rem;
+	background-color: white;
+	color: #212529;
+	font-family: inherit;
+	font-size: 1.25rem;
+	line-height: 1.5;
+}
+
+.tree-examples {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5em;
+	font-size: 1.1em;
+}
+
+.example-btn {
+	font-size: 1em;
+	padding: 0.2em 0.75em;
+}
+
+/* Tagged token chips */
+
+.token-chips,
+.tree-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+}
+
+.token-chips {
+	margin-bottom: 1.5em;
+}
+
+.token-chips:empty {
+	display: none;
+}
+
+.token-chip {
+	padding: 0.2em 0.7em;
+	border-radius: 0.3rem;
+	background-color: rgba(0, 0, 0, 0.12);
+	font-size: 1.1em;
+}
+
+.token-tag {
+	font-weight: 600;
+}
+
+/* Tree drawing */
+
+.tree-output {
+	margin-bottom: 1.5em;
+	padding: 1em;
+	border-radius: 0.3rem;
+	background-color: #f8f9fa;
+	box-shadow: 0 1em 2em rgba(0, 0, 0, 0.1);
+	overflow-x: auto;
+}
+
+.tree-container {
+	min-height: 200px;
+	display: flex;
+	justify-content: safe center;
+	align-items: center;
+}
+
+.tree-message {
+	width: 100%;
+	padding: 2em;
+	color: #6c757d;
+	font-size: 1.25em;
+	text-align: center;
+}
+
+.tree-edge {
+	stroke: #adb5bd;
+	stroke-width: 1.2;
+}
+
+.tree-edge-word {
+	stroke-dasharray: 3 3;
+}
+
+.tree-label {
+	font-family: "Josefin Slab", Georgia, serif;
+	font-size: 17px;
+	fill: #212529;
+}
+
+.tree-label-phrase {
+	font-weight: 600;
+	fill: #B23A2C;
+}
+
+.tree-label-bar {
+	fill: #6c757d;
+}
+
+.tree-label-head {
+	font-weight: 600;
+}
+
+.tree-word {
+	font-style: italic;
+	fill: #1f5f8b;
+}
